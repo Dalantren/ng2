@@ -9,11 +9,11 @@ import {
 import { MatMenuTrigger } from '@angular/material';
 
 @Directive({
-	selector: '[q-grid-menu-trigger]'
+	selector: '[qGridMenuTrigger]'
 })
 export class MenuTriggerDirective implements AfterViewInit {
 	@ContentChild(MatMenuTrigger) trigger: MatMenuTrigger;
-	@Output('q-grid-menu-trigger') onClose = new EventEmitter<any>();
+	@Output('qGridMenuTrigger') onClose = new EventEmitter<any>();
 
 	constructor() {}
 

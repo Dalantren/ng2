@@ -20,14 +20,14 @@ export interface DropEventArg {
 }
 
 @Directive({
-	selector: '[q-grid-drop]'
+	selector: '[qGridDrop]'
 })
 export class DropDirective extends NgComponent implements OnInit {
-	@Input('q-grid-drop-area') area: string;
-	@Input('q-grid-drop-data') dropData: any;
-	@Input('q-grid-drop') drop: Command<DropEventArg>;
-	@Input('q-grid-drag-over') dragOver: Command<DropEventArg>;
-	@Input('q-grid-drag-direction') dragDirection: 'x' | 'y' = 'y';
+	@Input('qGridDropArea') area: string;
+	@Input('qGridDropData') dropData: any;
+	@Input('qGridDrop') drop: Command<DropEventArg>;
+	@Input('qGridDragOver') dragOver: Command<DropEventArg>;
+	@Input('qGridDragDirection') dragDirection: 'x' | 'y' = 'y';
 
 	constructor(
 		@Optional() private root: RootService,

@@ -12,13 +12,13 @@ import { Shortcut } from 'ng2-qgrid';
 import { ChipsDirective } from './chips.directive';
 
 @Directive({
-	selector: '[q-grid-chips-push]'
+	selector: '[qGridChipsPush]'
 })
 export class ChipsPushDirective implements AfterViewInit {
 	@ContentChild(MatChipInput) inputComponent: MatChipInput;
 	@ContentChild('qGridInput') inputElement: ElementRef;
 
-	@Output('q-grid-chips-push') push = new EventEmitter<string>();
+	@Output('qGridChipsPush') push = new EventEmitter<string>();
 
 	constructor(private zone: NgZone, private chipsDirective: ChipsDirective) { }
 

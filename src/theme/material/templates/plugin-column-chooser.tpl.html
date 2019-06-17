@@ -58,14 +58,14 @@
 	<ul>
 		<ng-container *ngFor="let node of $context.node.children">
 			<li *ngIf="$context.ctrl.toggle.canExecute(node)"
-				[q-grid-drop]="$context.ctrl.drop"
-				[q-grid-drop-data]="node"
-				[q-grid-drag-over]="$context.ctrl.drop"
-				q-grid-drop-area="column-chooser"
-				q-grid-drag-direction="y">
-				<div [q-grid-drag]="$context.ctrl.drag"
-					 [q-grid-drag-data]="node"
-					 q-grid-drop-area="column-chooser">
+				[qGridDrop]="$context.ctrl.drop"
+				[qGridDropData]="node"
+				[qGridDragOver]="$context.ctrl.drop"
+				qridDropArea="column-chooser"
+				qGridDragDirection="y">
+				<div [qGridDrag]="$context.ctrl.drag"
+					 [qGridDragData]="node"
+					 qGridDropArea="column-chooser">
 					<mat-icon class="q-grid-icon">drag_indicator</mat-icon>
 				</div>
 				<mat-checkbox [checked]="$context.ctrl.state(node)"

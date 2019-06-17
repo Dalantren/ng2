@@ -6,19 +6,19 @@ import { yes } from 'ng2-qgrid/core/utility/kit';
 import { NgComponent } from '../../infrastructure/component/ng.component';
 
 @Directive({
-	selector: '[q-grid-file]'
+	selector: '[qGridFile]'
 })
 export class FileDirective extends NgComponent {
 	private reader = new FileReader();
 	private _value: any;
 	private _label: string;
 
-	@Output('q-grid-fileChange') valueChange = new EventEmitter<any>();
-	@Output('q-grid-file-labelChange') labelChange = new EventEmitter<string>();
+	@Output('qGridFileChange') valueChange = new EventEmitter<any>();
+	@Output('qGridFileLabelChange') labelChange = new EventEmitter<string>();
 
-	@Input('q-grid-file-is-valid') isValid: (name: string) => boolean = yes;
+	@Input('qGridFileIsValid') isValid: (name: string) => boolean = yes;
 
-	@Input('q-grid-file') get value() {
+	@Input('qGridFile') get value() {
 		return this._value;
 	}
 

@@ -16,9 +16,9 @@
                     mat-menu-item
                     (click)="$action.command.execute($cell)"
                     [disabled]="!$action.command.canExecute($cell)"
-                    [q-grid-command]="$action.command"
-                    [q-grid-command-context]="$cell"
-                    (q-grid-command-execute)="$view.edit.cell.cancel.execute($cell)">
+                    [qGridCommand]="$action.command"
+                    [qGridCommandContext]="$cell"
+                    (qGridCommandExecute)="$view.edit.cell.cancel.execute($cell)">
                 <mat-icon class="q-grid-icon">{{$action.icon}}</mat-icon>
                 <span>{{$action.title}}</span>
                 <span *ngIf="$action.command.shortcut"

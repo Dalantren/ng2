@@ -8,13 +8,13 @@ import { RootService } from '../../infrastructure/component/root.service';
 import { isFunction } from 'ng2-qgrid/core/utility/kit';
 
 @Directive({
-	selector: '[q-grid-drag]'
+	selector: '[qGridDrag]'
 })
 export class DragDirective {
-	@Input('q-grid-drag-data') data: any;
-	@Input('q-grid-drag-effect') effect: string;
-	@Input('q-grid-drag') drag: Command;
-	@Input('q-grid-drop-area') area: string;
+	@Input('qGridDragData') data: any;
+	@Input('qGridDragEffect') effect: string;
+	@Input('qGridDrag') drag: Command;
+	@Input('qGridDropArea') area: string;
 
 	constructor(
 		@Optional() private root: RootService,

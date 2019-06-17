@@ -4,7 +4,7 @@
              let-$vscroll="vscroll">
 
 	<mat-form-field class="q-grid-column-filter-input half"
-	                *q-grid-date="let isValid='isValid'"
+	                *qGridDate="let isValid='isValid'"
 	                [ngClass]="{'mat-form-field-invalid': !isValid(inputLeft.value)}">
 		<input q-grid-focus
 		       matInput
@@ -19,7 +19,7 @@
 	</mat-form-field>
 
 	<mat-form-field class="q-grid-column-filter-input half"
-	                *q-grid-date="let isValid='isValid'"
+	                *qGridDate="let isValid='isValid'"
 	                [ngClass]="{'mat-form-field-invalid': !isValid(inputRight.value)}">
 		<input matInput
 		       #inputRight

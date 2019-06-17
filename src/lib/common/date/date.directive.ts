@@ -4,7 +4,7 @@ const DATEPATTERN_1 = /^\d{1,2}[\/|\-|\.|_]\d{1,2}[\/|\-|\.|_]\d{4}$/g; // Month
 const DATEPATTERN_2 = /^\d{4}[\/|\-|\.|_]\d{1,2}[\/|\-|\.|_]\d{1,2}$/g; // Year/Day/Date Year/Day/Month
 
 @Directive({
-	selector: '[q-grid-date]'
+	selector: '[qGridDate]'
 })
 export class DateDirective {
 	constructor(templateRef: TemplateRef<DateDirective>, viewContainerRef: ViewContainerRef) {

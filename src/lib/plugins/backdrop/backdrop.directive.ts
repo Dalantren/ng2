@@ -2,17 +2,17 @@ import { Output, EventEmitter, Directive, Input, NgZone, Inject } from '@angular
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-	selector: '[q-grid-backdrop]'
+	selector: '[qGridBackdrop]'
 })
 export class BackdropDirective {
-	@Input('q-grid-backdrop-selector') selector = '';
-	@Output('q-grid-backdrop') close = new EventEmitter<any>();
+	@Input('qGridBackdropSelector') selector = '';
+	@Output('qGridBackdrop') close = new EventEmitter<any>();
 	private backdrop: HTMLElement;
 
 	constructor(private zone: NgZone, @Inject(DOCUMENT) private document: any) {
 	}
 
-	@Input('q-grid-backdrop-active')
+	@Input('qGridBackdropActive')
 	set backdropHost(value: any) {
 		if (!value) {
 			if (this.backdrop) {

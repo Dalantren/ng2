@@ -6,15 +6,15 @@ import { ShortcutDispatcher } from 'ng2-qgrid/core/shortcut/shortcut.dispatcher'
 
 
 @Directive({
-	selector: '[q-grid-command]'
+	selector: '[qGridCommand]'
 })
 export class CommandDirective implements OnInit, OnDestroy {
 	private shortcut = new Shortcut(new ShortcutDispatcher());
 	private shortcutOff: () => void;
 
-	@Input('q-grid-command') command: Command;
-	@Input('q-grid-command-context') commandContext: any;
-	@Output('q-grid-command-execute') execute = new EventEmitter();
+	@Input('qGridCommand') command: Command;
+	@Input('qGridCommandContext') commandContext: any;
+	@Output('qGridCommandExecute') execute = new EventEmitter();
 
 	constructor() {
 	}
