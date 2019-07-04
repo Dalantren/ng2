@@ -11,7 +11,7 @@ export class BackdropView {
 		const element = context.element;
 		const listener = new EventListener(element, new EventManager(this));
 
-		listener.on('mouseup', e => {
+		listener.on('click', e => {
 			if (checkButtonCode(e, LEFT_BUTTON) || checkButtonCode(e, MIDDLE_BUTTON)) {
 				e.stopPropagation();
 				element.remove();
