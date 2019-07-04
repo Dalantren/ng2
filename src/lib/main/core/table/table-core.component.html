@@ -8,7 +8,7 @@
 		   q-grid-drag-direction="x"
 		   [q-grid-drag-over]="$view.head.drop">
 	</thead>
-	<tbody *ngIf="visibility.pin.top"
+	<tbody *ngIf="visibility.pin?.top"
 		   class="q-grid-body-top"
 		   pin="top"
 		   q-grid-core-body
@@ -32,7 +32,7 @@
 		   [q-grid-vscroll-port-y]="$view.scroll.y"
 		   [q-grid-drag-over]="$view.row.drop">
 	</tbody>
-	<tbody *ngIf="visibility.pin.bottom"
+	<tbody *ngIf="visibility.pin?.bottom"
 		   class="q-grid-body-bottom"
 		   pin="bottom"
 		   q-grid-core-body

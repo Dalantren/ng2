@@ -1,8 +1,6 @@
 import { Matrix } from './matrix';
 import { Selector } from './selector';
-import { SelectorMediator } from './selector.mediate';
 import { UnitFactory } from './unit.factory';
-import { Range } from '../../infrastructure/range';
 
 export class SelectorFactory {
 	constructor(bag, selectorMark) {
@@ -11,41 +9,71 @@ export class SelectorFactory {
 	}
 
 	create() {
-		const bag = this.bag;
-		const selectorMark = this.selectorMark;
-		const matrix = new Matrix(tr => bag.elements.has(tr));
-		const entries =
-			selectorMark
-				.select()
-				.map(({ element, rowRange, columnRange }) => ({
-					matrix: matrix.build(element),
-					rowRange,
-					columnRange
-				}));
+		const { bag, selectorMark } = this;
+		const markup = new Matrix(tr => bag.elements.has(tr));
 
-		const selectorFactory = context => {
-			return entries.map(entry => ({
-				invoke: f => {
-					const unitFactory = new UnitFactory(entry.rowRange, entry.columnRange);
-					const selector = new Selector(entry.matrix, bag, unitFactory);
-
-					const args = [];
-					args.push(selector);
-					
-					if (context.hasOwnProperty('row')) {
-						args.push(context.row - entry.rowRange.start);
-					}
-
-					if (context.hasOwnProperty('column')) {
-						args.push(context.column - entry.columnRange.start);
-					}
-
-					return f(...args);
-				}
-			}));
+		const layout = {
+			top: 0,
+			bottom: 0,
 		};
 
-		const unitFactory = new UnitFactory(new Range(0, 0), new Range(0, 0));
-		return new SelectorMediator(selectorFactory, unitFactory);
+		const mx_LCR =
+			selectorMark.left()
+				.concat(selectorMark.center())
+				.concat(selectorMark.right())
+				.reduce((memo, element) => {
+					const mx = markup.build(element);
+					if (!memo.length) {
+						return mx;
+					}
+
+					for (let i = 0, length = mx.length; i < length; i++) {
+						memo[i].push(...mx[i]);
+					}
+
+					return memo;
+				}, []);
+
+		const mx_T_LCR = selectorMark
+			.top()
+			.reduce((memo, element) => {
+				const mx = markup.build(element);
+				layout.top = mx.length;
+
+				if (!memo.length) {
+					return mx;
+				}
+
+				let length = mx.length;
+				while (length--) {
+					memo.unshift(mx[length]);
+				}
+
+				return memo;
+			}, mx_LCR);
+
+		const mx_T_LCR_B = selectorMark
+			.bottom()
+			.reduce((memo, element) => {
+				const mx = markup.build(element);
+				layout.bottom = mx.length;
+
+				if (!memo.length) {
+					return mx;
+				}
+
+				for (let i = 0, length = mx.length; i < length; i++) {
+					memo.push(mx[i]);
+				}
+
+				return memo;
+			}, mx_T_LCR);
+
+		const unitFactory = new UnitFactory(0, 0);
+
+		return {
+			selector: new Selector(mx_T_LCR_B, bag, unitFactory),
+			layout
+		};
 	}
 }

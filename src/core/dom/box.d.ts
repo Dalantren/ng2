@@ -4,6 +4,7 @@ import { Column } from './column';
 import { Row } from './row';
 import { Bag } from './bag';
 import { Model } from '../infrastructure/model';
+import { SelectorMark } from './selector/selector.mark';
 
 export interface BoxMapper {
 	row(): any;
@@ -23,7 +24,7 @@ export interface BoxContext {
 }
 
 export declare class Box {
-	constructor(context: BoxContext, model: Model, selectorMark: any);
+	constructor(context: BoxContext, model: Model, selectorMark: SelectorMark);
 
 	cell(rowIndex: number, columnIndex: number): Cell;
 	column(columnIndex: number): Column;
@@ -32,4 +33,6 @@ export declare class Box {
 	rows(columnIndex: number): Row[];
 	rowCount(columnIndex: number): number;
 	columnCount(rowIndex: number): number;
+
+	materialize(pin: string, rowIndex: number): number;
 }

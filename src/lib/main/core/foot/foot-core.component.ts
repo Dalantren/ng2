@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ViewCoreService } from '../view/view-core.service';
 import { ColumnView } from 'ng2-qgrid/core/scene/view/column.view';
-import { TableCoreService } from '../table/table-core.service';
 import { NgComponent } from '../../../infrastructure/component/ng.component';
-import { RootService } from '../../../infrastructure/component/root.service';
+import { TableCoreComponent } from '../table/table-core.component';
 
 @Component({
 	// tslint:disable-next-line
@@ -13,9 +12,7 @@ import { RootService } from '../../../infrastructure/component/root.service';
 export class FootCoreComponent extends NgComponent {
 	constructor(
 		public $view: ViewCoreService,
-		public $table: TableCoreService,
-		private root: RootService,
-		private cd: ChangeDetectorRef
+		public $table: TableCoreComponent,
 	) {
 		super();
 	}

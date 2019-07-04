@@ -6,6 +6,7 @@ import { Head } from './head';
 import { Body, VirtualBody } from './body';
 import { Foot } from './foot';
 import { Bag } from './bag';
+import { Nav } from './nav';
 
 export class Table {
 	constructor(model, markup, context = {}) {
@@ -47,6 +48,14 @@ export class Table {
 		}
 
 		return this._data = new Data(this.model);
+	}
+
+	get nav() {
+		if (this._nav) {
+			return this._nav;
+		}
+
+		return this._nav = new Nav(this.model, this.body);
 	}
 
 	headCore() {

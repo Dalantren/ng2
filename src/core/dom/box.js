@@ -8,16 +8,38 @@ export class Box {
 		this.context = context;
 		this.model = model;
 
-		this.selectFactory = new SelectorFactory(context.bag, selectorMark);
+		const selectFactory = new SelectorFactory(context.bag, selectorMark);
+		this.invalidate(selectFactory);
 
-		this.selector = this.selectFactory.create();
 		model.sceneChanged.on(e => {
 			if (e.hasChanges('status')) {
 				if (e.state.status === 'stop') {
-					this.selector = this.selectFactory.create();
+					this.invalidate(selectFactory);
 				}
 			}
 		})
+	}
+
+	invalidate(selectFactory) {
+		const { selector, layout } = selectFactory.create();
+
+		this.selector = selector;
+		this.layout = layout;
+	}
+
+	materialize(pin, rowIndex) {
+		const base = this.context.mapper.viewToRow(rowIndex);
+		switch (pin) {
+			case 'top': {
+				return base;
+			}
+			case 'bottom': {
+				return base + this.selector.rowCount() - this.layout.bottom;
+			}
+			default: {
+				return base + this.layout.top;
+			}
+		}
 	}
 
 	columnCount(rowIndex) {

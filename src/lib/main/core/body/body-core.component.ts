@@ -8,7 +8,7 @@ import { BodyCtrl } from 'ng2-qgrid/core/body/body.ctrl';
 import { NgComponent } from '../../../infrastructure/component/ng.component';
 import { RootService } from '../../../infrastructure/component/root.service';
 import { ViewCoreService } from '../view/view-core.service';
-import { TableCoreService } from '../table/table-core.service';
+import { TableCoreComponent } from '../table/table-core.component';
 
 @Component({
 	// tslint:disable-next-line
@@ -23,7 +23,7 @@ export class BodyCoreComponent extends NgComponent implements OnInit {
 
 	constructor(
 		public $view: ViewCoreService,
-		public $table: TableCoreService,
+		public $table: TableCoreComponent,
 		private elementRef: ElementRef,
 		private root: RootService,
 		private zone: NgZone,

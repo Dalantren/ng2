@@ -4,6 +4,7 @@ import { Head } from './head';
 import { Body } from './body';
 import { Foot } from './foot';
 import { BoxContext } from './box';
+import { Nav } from './nav';
 
 /**
  * Use this class to get access to low level dom elements and functions of the qgrid.
@@ -38,4 +39,9 @@ export declare class Table {
 	 * Get raw data of what is rendered right now in qgrid.
 	 */
 	readonly data: Data;
+
+	/**
+	 * Navigation service.
+	 */
+	readonly nav: Nav;
 }

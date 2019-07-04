@@ -195,7 +195,7 @@ export class View extends Unit {
 		}
 
 		return 0;
-	}
+	}	
 
 	getElementCore() {
 		return this.markup.body;

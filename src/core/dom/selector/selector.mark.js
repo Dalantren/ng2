@@ -7,37 +7,57 @@ export class SelectorMark {
 		this.markup = markup;
 	}
 
-	select() {
+	left() {
 		const result = [];
 		const addNext = this.addFactory(result);
 
 		addNext('left');
+
+		return result;
+	}
+
+	center() {
+		const result = [];
+		const addNext = this.addFactory(result);
+
 		addNext(null);
+
+		return result;
+	}
+
+	right() {
+		const result = [];
+		const addNext = this.addFactory(result);
+
 		addNext('right');
 
 		return result;
 	}
 
-	addFactory(result) {
-		const model = this.model;
-		const { rows } = model.view();
-		const columns = model.scene().column.area;
+	top() {
+		const result = [];
+		const addNext = this.addFactory(result);
 
+		addNext('top');
+
+		return result;
+	}
+
+	bottom() {
+		const result = [];
+		const addNext = this.addFactory(result);
+
+		addNext('bottom');
+
+		return result;
+	}
+
+	addFactory(result) {
 		return pin => {
 			const name = pin ? `${this.name}-${pin}` : this.name;
 			const element = this.markup[name];
 			if (element) {
-				const prev = result[result.length - 1];
-				const columnStart = prev ? prev.columnRange.end : 0;
-				const columnCount = columns[pin].length;
-				const rowStart = 0;
-				const rowCount = rows.length;
-
-				result.push({
-					element,
-					columnRange: new Range(columnStart, columnStart + columnCount),
-					rowRange: new Range(rowStart, rowStart + rowCount)
-				});
+				result.push(element);
 			}
 
 			return result;

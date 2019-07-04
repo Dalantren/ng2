@@ -2,6 +2,7 @@ import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { Tr } from 'ng2-qgrid/core/dom/tr';
 import { ViewCoreService } from '../view/view-core.service';
 import { RootService } from '../../../infrastructure/component/root.service';
+import { BodyCoreComponent } from '../body/body-core.component';
 
 @Directive({
 	selector: '[q-grid-core-tr]'
@@ -9,12 +10,13 @@ import { RootService } from '../../../infrastructure/component/root.service';
 export class TrCoreDirective implements Tr, OnInit, OnDestroy {
 	@Input('q-grid-core-index') viewIndex: number;
 	@Input('q-grid-core-tr') model: any;
-	@Input('q-grid-core-source') source;
+	@Input('q-grid-core-source') source: string;
 
 	element: HTMLElement;
 
 	constructor(
 		public $view: ViewCoreService,
+		private $body: BodyCoreComponent,
 		private root: RootService,
 		elementRef: ElementRef
 	) {
@@ -22,7 +24,7 @@ export class TrCoreDirective implements Tr, OnInit, OnDestroy {
 	}
 
 	get index() {
-		return this.$view.scroll.y.container.position + this.viewIndex;
+		return this.root.table.body.materialize(this.$body.pin, this.viewIndex);
 	}
 
 	ngOnInit() {

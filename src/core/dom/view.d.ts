@@ -25,5 +25,5 @@ export declare class View extends Unit {
 
 	addLayer(name: string): any;
 	removeLayer(name: string): boolean;
-	hasLayer(name: string): boolean;
+	hasLayer(name: string): boolean;	
 }
